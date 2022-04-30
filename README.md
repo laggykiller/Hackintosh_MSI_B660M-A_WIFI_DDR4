@@ -1,6 +1,6 @@
 # Introduction
 
-This is a repository for a non-working Hackintosh EFI for MSI PRO B660M-A WIFI DDR4.
+This is a repository of a non-working Hackintosh EFI for MSI PRO B660M-A WIFI DDR4.
 
 Please, do not copy it and expect it to work.
 
