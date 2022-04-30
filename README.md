@@ -6,6 +6,8 @@ Please, do not copy it and expect it to work.
 
 Currently, it is stuck at "Registered CoreAnalyticsHub functions with xnu."
 
+Reddit discussion: https://www.reddit.com/r/hackintosh/comments/ufcg8m/12th_gen_hackintosh_stuck_at_registered/
+
 # System information
 
 Motherboard: MSI PRO B660M-A WIFI DDR4
