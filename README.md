@@ -29,3 +29,21 @@ Display: 1920x1080 60Hz
 MacOS version to install: Monterey 12.3
 
 OpenCore Version: 0.8.0
+
+# BIOS settings
+
+ENABLED Above 4G memory
+
+ENABLED XHCI Hand-off
+
+DISABLED MSI Fast Boot
+
+DISABLED Fast Boot
+
+DISABLED Secure Boot
+
+ENABLED XMP
+
+ENABLED VT-D
+
+DISABLED CFG Lock
