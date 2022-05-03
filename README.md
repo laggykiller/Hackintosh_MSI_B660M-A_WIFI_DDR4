@@ -1,49 +1,75 @@
 # Introduction
 
-This is a repository of a non-working Hackintosh EFI for MSI PRO B660M-A WIFI DDR4.
+This is a repository of Hackintosh EFI for MSI PRO B660M-A WIFI DDR4 (https://www.msi.com/Motherboard/PRO-B660M-A-WIFI-DDR4)
 
-Please, do not copy it and expect it to work.
+**The wifi chip in the wifi version of the motherboard is AX201, which the bluetooth is not supported for now. I suggest you to buy non-wifi version of the motherboard and buy a compatible wifi card instead. Learn more from this github issue page: https://github.com/OpenIntelWireless/IntelBluetoothFirmware/issues/369**
 
-Currently, it is stuck at "Registered CoreAnalyticsHub functions with xnu."
+I do not have thunderbolt device, so I cannot test for it.
 
-Reddit discussion: https://www.reddit.com/r/hackintosh/comments/ufcg8m/12th_gen_hackintosh_stuck_at_registered/
+Other than above, everything should work.
 
-# System information
+Please report problems you encountered in issues. Feel free to send pull requests.
 
-Motherboard: MSI PRO B660M-A WIFI DDR4
+Please note that you are expected to make some modification to this EFI in order for it to work, which the important steps are described below.
 
-CPU: i7-12700F
+A write up for this build is available in this reddit thread: https://www.reddit.com/r/hackintosh/comments/uhlm8f/monterey_with_msi_pro_b660ma_ddr4_i712700f_rx580/
 
-GPU: RTX2070 (To be disabled), RX580 (4GB)
+# Sample configuration
+- Motherboard: MSI PRO B660M-A WIFI DDR4
+- CPU: i7-12700F
+- GPU: RX580
+- RAM: DDR4 16GB x 2 (3600MHz)
+- SSD: AGI 1TB NVMe (AGI1T0GIMAI218)
+- WIFI: Intel Wi-Fi 6 AX201 160MHz
+- Ethernet: Realtek RTL8125BG
+- Audio: Realtek ALC897 codec
+- MacOS version: Monterey 12.3
+- OpenCore version: 0.8.0
 
-RAM: DDR4 16GB x 2 (3600MHz)
+# Guide for using this repository
+## 0. Familiarize yourself by reading other guides
+- Dortania OpenCore Install Guide (Following Comet Lake): https://dortania.github.io/OpenCore-Install-Guide/
+- Reddit post on 12th gen intel hackintosh: https://www.reddit.com/r/hackintosh/comments/sp1zgv/opencore_alder_lake_12thgen_intel_hackintosh/
 
-SSD: AGI 1TB NVMe (AGI1T0GIMAI218)
+## 1. BIOS configuration
+- Default configuration should work.
+- You may disable CFG lock, so that you can set AppleXcpmCfgLock to False in config.plist
 
-WIFI: Intel Wi-Fi 6 AX201 160MHz
+## 2. Create installation USB
+- Create installation USB: https://dortania.github.io/OpenCore-Install-Guide/installer-guide/
+- Copy-paste the 'EFI' folder from this repository into EFI partition of USB installation disk
 
-Ethernet: Realtek RTL8125BG
+## 3. Modify EFI
+- Kexts and Kernel -> Add (https://dortania.github.io/OpenCore-Install-Guide/ktext.html)
+  - This repository assume you are installing Monterey. If not, remove BluetoolFixup.kext
+  - This repository assume that you are using intel wifi card. If not, replace AirportItlwm.kext, BluetoolFixup.kext and IntelBluetoothFirmware.kext with suitable one.
+  - **Since AX201 bluetooth is not working, BluetoolFixup.kext and IntelBluetoothFirmware.kext are included but are disabled in config.plist**
+  - Adding AGPMInjector.kext is recommended, which improves power management on graphics card. The kext is different from card to card, so please generate it by yourself.
+  - Since the motherboard USB ports exceeds apple's 15 ports limit, USBMap.kext will disable USB3.2 Gen2 ports (Red ports). If you want to customize USB mapping, you can remove USBMap.kext and use USBToolBox to map USB
+    - But remember to include both USBToolBox.kext and UTBMap.kext
+    - Do not use USBInjectAll.kext. It cause boot to freeze.
+- PlatformInfo (https://dortania.github.io/OpenCore-Install-Guide/config.plist/coffee-lake.html#platforminfo)
+  - PlatformInfo -> Generic -> MLB
+  - PlatformInfo -> Generic -> ROM
+  - PlatformInfo -> Generic -> SystemSerialNumber
+  - PlatformInfo -> Generic -> SystemUUID
+- 12th gen intel iGPU is not supported. Please disable iGPU and other incompatible eGPU (https://dortania.github.io/OpenCore-Install-Guide/extras/spoof.html#windows-gpu-selection)
+- Other SSDT, kexts, configuration changes related to your configuration
 
-Display: 1920x1080 60Hz
+## 4. Boot the USB, install and copy EFI to hard drive
 
-MacOS version to install: Monterey 12.3
+# Reddit discussions
+https://www.reddit.com/r/hackintosh/comments/ufcg8m/12th_gen_hackintosh_stuck_at_registered/
 
-OpenCore Version: 0.8.0
+https://www.reddit.com/r/hackintosh/comments/uhlm8f/monterey_with_msi_pro_b660ma_ddr4_i712700f_rx580/
 
-# BIOS settings
-
-ENABLED Above 4G memory
-
-ENABLED XHCI Hand-off
-
-DISABLED MSI Fast Boot
-
-DISABLED Fast Boot
-
-DISABLED Secure Boot
-
-ENABLED XMP
-
-ENABLED VT-D
-
-DISABLED CFG Lock
+# Credits
+- Special thanks to reddit user u/tasco11 for making it boot, debugging SSDT and USB mapping
+- https://www.reddit.com/r/hackintosh/comments/sp1zgv/opencore_alder_lake_12thgen_intel_hackintosh/
+- https://dortania.github.io/OpenCore-Install-Guide/
+- https://heipg.cn/tutorial/b660m-install-macos.html
+- Opencore and most kexts from acidanthera: https://github.com/acidanthera
+- CPUTopologyRebuild from b00t0x: https://github.com/b00t0x/CpuTopologyRebuild
+- OpenIntelWireless for intel wifi card kexts: https://github.com/OpenIntelWireless
+- LucyRTL8125Ethernet from Mieze: https://github.com/Mieze/LucyRTL8125Ethernet
+- CPUFriendDataProvider.kext from vit9696: https://github.com/dortania/bugtracker/issues/190
