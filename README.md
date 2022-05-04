@@ -45,7 +45,7 @@ A write up for this build is available in this reddit thread: https://www.reddit
   - This repository assume that you are using intel wifi card. If not, replace AirportItlwm.kext, BluetoolFixup.kext and IntelBluetoothFirmware.kext with suitable one.
   - **Since AX201 bluetooth is not working, BluetoolFixup.kext and IntelBluetoothFirmware.kext are included but are disabled in config.plist**
   - Adding AGPMInjector.kext is recommended, which improves power management on graphics card. The kext is different from card to card, so please generate it by yourself.
-  - Since the motherboard USB ports exceeds apple's 15 ports limit, USBMap.kext will disable USB3.2 Gen2 ports (Red ports). If you want to customize USB mapping, you can remove USBMap.kext and use USBToolBox to map USB
+  - Since the motherboard USB ports exceeds apple's 15 ports limit, USBMap.kext will disable one of the USB3.2 Gen1 port at the back panel (Blue port). If you want to customize USB mapping, you can remove USBMap.kext and use USBToolBox to map USB
     - But remember to include both USBToolBox.kext and UTBMap.kext
     - Do not use USBInjectAll.kext. It cause boot to freeze.
 - PlatformInfo (https://dortania.github.io/OpenCore-Install-Guide/config.plist/coffee-lake.html#platforminfo)
