@@ -58,6 +58,9 @@ A write up for this build is available in this reddit thread: https://www.reddit
 
 ## 4. Boot the USB, install and copy EFI to hard drive
 
+## 5. Post-install
+- You may set SecureBootModel to j160 after all installation has completed. It was set to Disabled intentionally, as setting this before installation completes can cause boot to fail.
+
 # Reddit discussions
 https://www.reddit.com/r/hackintosh/comments/ufcg8m/12th_gen_hackintosh_stuck_at_registered/
 
