@@ -2,7 +2,7 @@
 
 This is a repository of Hackintosh EFI for MSI PRO B660M-A WIFI DDR4 (https://www.msi.com/Motherboard/PRO-B660M-A-WIFI-DDR4)
 
-**The wifi chip in the wifi version of the motherboard is AX201, which the bluetooth is not supported for now (Tested that it does not work in Monterey, Big Sur, Catalina). I suggest you to buy non-wifi version of the motherboard and buy a compatible wifi card instead. Learn more from this github issue page: https://github.com/OpenIntelWireless/IntelBluetoothFirmware/issues/369**
+**The wifi chip in the wifi version of the motherboard is AX201, which the bluetooth is not supported for now in Monterey. I suggest you to buy non-wifi version of the motherboard and buy a compatible wifi card instead. However, the bluetooth works in Big Sur and earlier with testing version of IntelBluetoothFirmware.kext from this github issue page: https://github.com/OpenIntelWireless/IntelBluetoothFirmware/issues/369**
 
 I do not have thunderbolt device, so I cannot test for it.
 
