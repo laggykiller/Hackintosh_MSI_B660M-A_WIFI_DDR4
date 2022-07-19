@@ -6,6 +6,8 @@ This is a repository of Hackintosh EFI for MSI PRO B660M-A WIFI DDR4 (https://ww
 
 I do not have thunderbolt device, so I cannot test for it.
 
+I have tried to use Ventura on this setup
+
 Other than above, everything should work.
 
 Please report problems you encountered in issues. Feel free to send pull requests.
