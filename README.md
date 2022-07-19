@@ -6,7 +6,7 @@ This is a repository of Hackintosh EFI for MSI PRO B660M-A WIFI DDR4 (https://ww
 
 I do not have thunderbolt device, so I cannot test for it.
 
-I have not tried to use Ventura on this setup
+I am using Monterey. I have not tried to use Ventura on this setup
 
 Other than above, everything should work.
 
@@ -54,7 +54,7 @@ A write up for this build is available in this reddit thread: https://www.reddit
   - PlatformInfo -> Generic -> ROM
   - PlatformInfo -> Generic -> SystemSerialNumber
   - PlatformInfo -> Generic -> SystemUUID
-- 12th gen intel iGPU is not supported. Please disable iGPU and other incompatible eGPU (https://dortania.github.io/OpenCore-Install-Guide/extras/spoof.html#windows-gpu-selection)
+- 12th gen intel iGPU is not supported. Please disable iGPU and other incompatible eGPU (https://dortania.github.io/OpenCore-Install-Guide/extras/spoof.html)
 - Other SSDT, kexts, configuration changes related to your configuration
 
 ## 4. Boot the USB, install and copy EFI to hard drive
