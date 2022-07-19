@@ -2,7 +2,7 @@
 
 This is a repository of Hackintosh EFI for MSI PRO B660M-A WIFI DDR4 (https://www.msi.com/Motherboard/PRO-B660M-A-WIFI-DDR4)
 
-**The wifi chip in the wifi version of the motherboard is AX201, which the bluetooth is not supported for now in Monterey. I suggest you to buy non-wifi version of the motherboard and buy a compatible wifi card instead. However, the bluetooth works in Big Sur and earlier with testing version of IntelBluetoothFirmware.kext from this github issue page: https://github.com/OpenIntelWireless/IntelBluetoothFirmware/issues/369**
+**The bluetooth chip AX201 currently works thanks to updates to IntelBluetoothFirmware. Learn more from this github issue page: https://github.com/OpenIntelWireless/IntelBluetoothFirmware/issues/369**
 
 I do not have thunderbolt device, so I cannot test for it.
 
@@ -41,12 +41,11 @@ A write up for this build is available in this reddit thread: https://www.reddit
 
 ## 3. Modify EFI
 - Kexts and Kernel -> Add (https://dortania.github.io/OpenCore-Install-Guide/ktext.html)
-  - This repository assume you are installing Monterey. If not, remove BluetoolFixup.kext
-  - This repository assume that you are using intel wifi card. If not, replace AirportItlwm.kext, BluetoolFixup.kext and IntelBluetoothFirmware.kext with suitable one.
-  - **Since AX201 bluetooth is not working, BluetoolFixup.kext and IntelBluetoothFirmware.kext are included but are disabled in config.plist**
+  - This repository assume you are installing Monterey or above. If not, remove BluetoolFixup.kext
+  - This repository assume that you are using intel wifi card. If not, replace AirportItlwm.kext, BluetoolFixup.kext, IntelBluetoothFirmware.kext and IntelBTPatcher.kext with suitable one.
   - Adding AGPMInjector.kext is recommended, which improves power management on graphics card. The kext is different from card to card, so please generate it by yourself.
-  - Since the motherboard USB ports exceeds apple's 15 ports limit, USBMap.kext will disable one of the USB3.2 Gen1 port at the back panel (Blue port). If you want to customize USB mapping, you can remove USBMap.kext and use USBToolBox to map USB
-    - But remember to include both USBToolBox.kext and UTBMap.kext
+  - Since the motherboard USB ports exceeds apple's 15 ports limit, USBMap.kext will disable one of the USB3.2 Gen1 port at the back panel (Blue port). If you want to customize USB mapping, you can replace UTBMap.kext with your own.
+    - Remember to include both USBToolBox.kext and UTBMap.kext
     - Do not use USBInjectAll.kext. It cause boot to freeze.
 - PlatformInfo (https://dortania.github.io/OpenCore-Install-Guide/config.plist/coffee-lake.html#platforminfo)
   - PlatformInfo -> Generic -> MLB
