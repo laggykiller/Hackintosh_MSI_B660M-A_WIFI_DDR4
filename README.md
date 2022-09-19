@@ -1,3 +1,11 @@
+# NOTICE FOR BIOS UPDATE
+
+Newer BIOS (e.g. 7D43v17) cause boot to fail at early stage if SetupVirtualMap is set to false
+
+Hence, please set Booter -> Quirks -> SetupVirtualMap to true
+
+For more information, refer to this github issue page: https://github.com/laggykiller/Hackintosh_MSI_B660M-A_WIFI_DDR4/issues/1
+
 # Introduction
 
 This is a repository of Hackintosh EFI for MSI PRO B660M-A WIFI DDR4 (https://www.msi.com/Motherboard/PRO-B660M-A-WIFI-DDR4)
@@ -34,7 +42,7 @@ A write up for this build is available in this reddit thread: https://www.reddit
 - Reddit post on 12th gen intel hackintosh: https://www.reddit.com/r/hackintosh/comments/sp1zgv/opencore_alder_lake_12thgen_intel_hackintosh/
 
 ## 1. BIOS configuration
-- Default configuration should work.
+- Disable Secure Boot
 - You may disable CFG lock, so that you can set AppleXcpmCfgLock to False in config.plist
 
 ## 2. Create installation USB
@@ -49,6 +57,7 @@ A write up for this build is available in this reddit thread: https://www.reddit
   - Since the motherboard USB ports exceeds apple's 15 ports limit, USBMap.kext will disable one of the USB3.2 Gen1 port at the back panel (Blue port). If you want to customize USB mapping, you can replace UTBMap.kext with your own.
     - Remember to include both USBToolBox.kext and UTBMap.kext
     - Do not use USBInjectAll.kext. It cause boot to freeze.
+    - Some reported that the UTBMap.kext provided is not working. You may try this UTBMap.kext mentioned in this issue: https://github.com/laggykiller/Hackintosh_MSI_B660M-A_WIFI_DDR4/issues/1
 - PlatformInfo (https://dortania.github.io/OpenCore-Install-Guide/config.plist/coffee-lake.html#platforminfo)
   - PlatformInfo -> Generic -> MLB
   - PlatformInfo -> Generic -> ROM
