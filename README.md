@@ -14,7 +14,9 @@ This is a repository of Hackintosh EFI for MSI PRO B660M-A WIFI DDR4 (https://ww
 
 I do not have thunderbolt device, so I cannot test for it.
 
-I am using Monterey. I have not tried to use Ventura on this setup
+Monterey and Ventura works without problem.
+
+Sonoma works, but Wifi and Bluetooth is not working (For now, due to issue with AirportItlwm.kext)
 
 Other than above, everything should work.
 
